@@ -1,4 +1,4 @@
-package com.randy.demo.config;
+package com.dev.demo.config;
 
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;

@@ -1,4 +1,6 @@
-package com.randy.demo.user;
+package com.dev.demo.repository;
+
+import com.dev.demo.entity.User;
 
 import java.util.Optional;
 

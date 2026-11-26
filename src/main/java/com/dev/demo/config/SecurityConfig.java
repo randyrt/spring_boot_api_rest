@@ -1,6 +1,6 @@
-package com.randy.demo.config;
+package com.dev.demo.config;
 
-import com.randy.demo.user.UserRepository;
+import com.dev.demo.repository.UserRepository;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -42,7 +42,7 @@ public class SecurityConfig {
         return args -> {
             var admin = userRepository.findByUsername("admin");
             if (admin.isEmpty()) {
-                userRepository.save(new com.randy.demo.user.User(
+                userRepository.save(new com.dev.demo.entity.User(
                         "admin", passwordEncoder.encode("admin123"),
                         "admin@example.com", "USER"));
             } else if (admin.get().getEmail() == null) {
