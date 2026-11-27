@@ -1,6 +1,6 @@
-package com.dev.demo.config;
+package com.dev.demo.Config.Security;
 
-import com.dev.demo.repository.UserRepository;
+import com.dev.demo.Repository.User.UserRepository;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -42,7 +42,7 @@ public class SecurityConfig {
         return args -> {
             var admin = userRepository.findByUsername("admin");
             if (admin.isEmpty()) {
-                userRepository.save(new com.dev.demo.entity.User(
+                userRepository.save(new com.dev.demo.Entity.User.User(
                         "admin", passwordEncoder.encode("admin123"),
                         "admin@example.com", "USER"));
             } else if (admin.get().getEmail() == null) {
@@ -66,7 +66,7 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/login", "/error", "/actuator/health").permitAll()
+                        .requestMatchers("/auth/login", "/auth/register", "/error", "/actuator/health").permitAll()
                         .anyRequest().authenticated())
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
 

@@ -1,7 +1,8 @@
-package com.dev.demo.controller;
+package com.dev.demo.Controller.Profile;
 
-import com.dev.demo.entity.Profile;
-import com.dev.demo.service.ProfileService;
+import com.dev.demo.DTO.ApiResponse.ApiResponse;
+import com.dev.demo.Entity.Profile.Profile;
+import com.dev.demo.Service.Profile.ProfileService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -24,30 +25,33 @@ public class ProfileController {
         this.profileService = profileService;
     }
 
-    @PostMapping("/me")
+    @PostMapping("/post")
     @ResponseStatus(HttpStatus.CREATED)
-    public ProfileResponse create(@RequestBody ProfileRequest request,
-                                  Authentication authentication) {
-        return toResponse(profileService.create(authentication.getName(),
+    public ApiResponse<ProfileResponse> create(@RequestBody ProfileRequest request,
+                                               Authentication authentication) {
+        ProfileResponse response = toResponse(profileService.create(authentication.getName(),
                 request.phoneNumber(), request.address(), request.city(), request.postalCode()));
+        return new ApiResponse<>("Profil créé avec succès", response);
     }
 
-    @GetMapping("/me")
-    public ProfileResponse get(Authentication authentication) {
-        return toResponse(profileService.findByUsername(authentication.getName()));
+    @GetMapping("/get")
+    public ApiResponse<ProfileResponse> get(Authentication authentication) {
+        return new ApiResponse<>("Profil récupéré avec succès",
+                toResponse(profileService.findByUsername(authentication.getName())));
     }
 
-    @PutMapping("/me")
-    public ProfileResponse update(@RequestBody ProfileRequest request,
-                                  Authentication authentication) {
-        return toResponse(profileService.update(authentication.getName(),
+    @PutMapping("/put")
+    public ApiResponse<ProfileResponse> update(@RequestBody ProfileRequest request,
+                                               Authentication authentication) {
+        ProfileResponse response = toResponse(profileService.update(authentication.getName(),
                 request.phoneNumber(), request.address(), request.city(), request.postalCode()));
+        return new ApiResponse<>("Profil mis à jour avec succès", response);
     }
 
-    @DeleteMapping("/me")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(Authentication authentication) {
+    @DeleteMapping("/delete")
+    public ApiResponse<Void> delete(Authentication authentication) {
         profileService.delete(authentication.getName());
+        return new ApiResponse<>("Profil supprimé avec succès", null);
     }
 
     private ProfileResponse toResponse(Profile profile) {

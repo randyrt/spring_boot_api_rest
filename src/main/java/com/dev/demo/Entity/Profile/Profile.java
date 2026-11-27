@@ -1,6 +1,6 @@
-package com.dev.demo.entity;
+package com.dev.demo.Entity.Profile;
 
-import com.dev.demo.entity.User;
+import com.dev.demo.Entity.User.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

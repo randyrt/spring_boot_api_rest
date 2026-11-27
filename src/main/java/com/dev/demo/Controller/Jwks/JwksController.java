@@ -1,4 +1,4 @@
-package com.dev.demo.controller;
+package com.dev.demo.Controller.Jwks;
 
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;

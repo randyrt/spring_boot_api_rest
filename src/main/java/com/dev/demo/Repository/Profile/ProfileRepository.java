@@ -1,6 +1,6 @@
-package com.dev.demo.repository;
+package com.dev.demo.Repository.Profile;
 
-import com.dev.demo.entity.Profile;
+import com.dev.demo.Entity.Profile.Profile;
 
 import java.util.Optional;
 

@@ -1,8 +1,8 @@
-package com.dev.demo.controller;
+package com.dev.demo.Auth;
 
 import java.util.Map;
 
-import com.dev.demo.service.AuthService;
+import com.dev.demo.Service.Auth.AuthService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +23,14 @@ public class AuthController {
         return authService.login(request.username(), request.password(), request.email());
     }
 
+    @PostMapping("/register")
+    public Map<String, Object> register(@RequestBody RegisterRequest request) {
+        return authService.register(request.username(), request.email(), request.password());
+    }
+
     public record LoginRequest(String username, String password, String email) {
+    }
+
+    public record RegisterRequest(String username, String email, String password) {
     }
 }

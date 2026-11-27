@@ -1,9 +1,9 @@
-package com.dev.demo.service;
+package com.dev.demo.Service.Profile;
 
-import com.dev.demo.entity.Profile;
-import com.dev.demo.entity.User;
-import com.dev.demo.repository.ProfileRepository;
-import com.dev.demo.repository.UserRepository;
+import com.dev.demo.Entity.Profile.Profile;
+import com.dev.demo.Entity.User.User;
+import com.dev.demo.Repository.Profile.ProfileRepository;
+import com.dev.demo.Repository.User.UserRepository;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
