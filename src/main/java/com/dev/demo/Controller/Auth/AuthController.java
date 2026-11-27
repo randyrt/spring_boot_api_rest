@@ -1,4 +1,4 @@
-package com.dev.demo.Auth;
+package com.dev.demo.Controller.Auth;
 
 import java.util.Map;
 

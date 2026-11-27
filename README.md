@@ -31,7 +31,7 @@ de développement sont `admin` / `admin123`.
 Obtenir un token :
 
 ```bash
-curl -X POST http://localhost:8080/auth/login \
+curl -X POST http://localhost:8080/api/auth/login \
   -H 'Content-Type: application/json' \
   -d '{"username":"admin","email":"admin@example.com","password":"admin123"}'
 ```
@@ -39,7 +39,7 @@ curl -X POST http://localhost:8080/auth/login \
 Puis appeler `/hello` avec la valeur du champ `token` retourné :
 
 ```bash
-curl http://localhost:8080/hello \
+curl http://localhost:8080/api/hello \
   -H 'Authorization: Bearer VOTRE_TOKEN'
 ```
 
