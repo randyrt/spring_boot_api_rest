@@ -2,7 +2,7 @@ package com.dev.demo.Controller.Profile;
 
 import com.dev.demo.DTO.ApiResponse.ApiResponse;
 import com.dev.demo.Entity.Profile.Profile;
-import com.dev.demo.DTO.Profile.ProfileRequest;
+import com.dev.demo.DTO.ProfileDTOValidator.ProfileRequestDTOValidator;
 import com.dev.demo.Service.Profile.ProfileService;
 
 import jakarta.validation.Valid;
@@ -29,7 +29,7 @@ public class ProfileController {
 
     @PostMapping("/post")
     @ResponseStatus(HttpStatus.CREATED)
-    public ApiResponse<ProfileResponse> create(@Valid @RequestBody ProfileRequest request,
+    public ApiResponse<ProfileResponse> create(@Valid @RequestBody ProfileRequestDTOValidator request,
                                                Authentication authentication) {
         ProfileResponse response = toResponse(profileService.create(authentication.getName(),
                 request.phoneNumber(), request.address(), request.city(), request.postalCode()));
@@ -43,7 +43,7 @@ public class ProfileController {
     }
 
     @PutMapping("/put")
-    public ApiResponse<ProfileResponse> update(@Valid @RequestBody ProfileRequest request,
+    public ApiResponse<ProfileResponse> update(@Valid @RequestBody ProfileRequestDTOValidator request,
                                                Authentication authentication) {
         ProfileResponse response = toResponse(profileService.update(authentication.getName(),
                 request.phoneNumber(), request.address(), request.city(), request.postalCode()));

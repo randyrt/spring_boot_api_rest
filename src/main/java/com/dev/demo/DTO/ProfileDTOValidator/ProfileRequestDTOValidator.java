@@ -1,4 +1,4 @@
-package com.dev.demo.DTO.Profile;
+package com.dev.demo.DTO.ProfileDTOValidator;
 
 import com.dev.demo.Config.Jackson.StrictStringDeserializer;
 import jakarta.validation.constraints.NotBlank;
@@ -10,7 +10,7 @@ import tools.jackson.databind.annotation.JsonDeserialize;
  * Equivalent d'un FormRequest Laravel pour la création et la modification
  * d'un profil.
  */
-public record ProfileRequest(
+public record ProfileRequestDTOValidator(
         @NotBlank(message = "Le numéro de téléphone est obligatoire")
         @Pattern(regexp = "^[0-9]{1,10}$",
                 message = "Le numéro de téléphone doit contenir au maximum 10 chiffres")
