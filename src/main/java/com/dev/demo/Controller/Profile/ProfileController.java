@@ -2,8 +2,10 @@ package com.dev.demo.Controller.Profile;
 
 import com.dev.demo.DTO.ApiResponse.ApiResponse;
 import com.dev.demo.Entity.Profile.Profile;
+import com.dev.demo.DTO.Profile.ProfileRequest;
 import com.dev.demo.Service.Profile.ProfileService;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,7 +29,7 @@ public class ProfileController {
 
     @PostMapping("/post")
     @ResponseStatus(HttpStatus.CREATED)
-    public ApiResponse<ProfileResponse> create(@RequestBody ProfileRequest request,
+    public ApiResponse<ProfileResponse> create(@Valid @RequestBody ProfileRequest request,
                                                Authentication authentication) {
         ProfileResponse response = toResponse(profileService.create(authentication.getName(),
                 request.phoneNumber(), request.address(), request.city(), request.postalCode()));
@@ -41,7 +43,7 @@ public class ProfileController {
     }
 
     @PutMapping("/put")
-    public ApiResponse<ProfileResponse> update(@RequestBody ProfileRequest request,
+    public ApiResponse<ProfileResponse> update(@Valid @RequestBody ProfileRequest request,
                                                Authentication authentication) {
         ProfileResponse response = toResponse(profileService.update(authentication.getName(),
                 request.phoneNumber(), request.address(), request.city(), request.postalCode()));
@@ -57,10 +59,6 @@ public class ProfileController {
     private ProfileResponse toResponse(Profile profile) {
         return new ProfileResponse(profile.getId(), profile.getPhoneNumber(),
                 profile.getAddress(), profile.getCity(), profile.getPostalCode());
-    }
-
-    public record ProfileRequest(String phoneNumber, String address,
-                                 String city, String postalCode) {
     }
 
     public record ProfileResponse(Long id, String phoneNumber, String address,
