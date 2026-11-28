@@ -6,10 +6,6 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import tools.jackson.databind.annotation.JsonDeserialize;
 
-/**
- * Equivalent d'un FormRequest Laravel pour la création et la modification
- * d'un profil.
- */
 public record ProfileRequestDTOValidator(
         @NotBlank(message = "Le numéro de téléphone est obligatoire")
         @Pattern(regexp = "^[0-9]{1,10}$",
